@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneCry", "PhoneCry\PhoneCry.csproj", "{0EF822E3-B067-48B6-8E69-10362DEA6BC2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0EF822E3-B067-48B6-8E69-10362DEA6BC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EF822E3-B067-48B6-8E69-10362DEA6BC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EF822E3-B067-48B6-8E69-10362DEA6BC2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0EF822E3-B067-48B6-8E69-10362DEA6BC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EF822E3-B067-48B6-8E69-10362DEA6BC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EF822E3-B067-48B6-8E69-10362DEA6BC2}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {51AA2E77-EA69-4DE3-AA62-D8B37A8961E4}
+	EndGlobalSection
+EndGlobal

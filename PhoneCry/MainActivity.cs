@@ -163,9 +163,10 @@ namespace PhoneCry
                 // checkClash();
                 checkWell();
             }
-            if (globalTimer >= 36000)
+            // On admet que le jeu dure au moins 1 minute
+            if (isStarted && globalTimer >= 36000)
             {
-
+                checkEnd();
             }
         }
 
@@ -175,6 +176,7 @@ namespace PhoneCry
             {
                 isStarted = true;
                 playSound(selectedVoice[0]);
+                globalTimer = 0;
             }
         }
 
@@ -255,6 +257,10 @@ namespace PhoneCry
             }
         }
 
-
+        private void checkEnd()
+        {
+            playSound(selectedVoice[9]);
+            isStarted = false;
+        }
     }
 }

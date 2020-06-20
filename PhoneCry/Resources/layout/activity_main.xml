@@ -11,4 +11,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvValue" />
+	<RadioGroup
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/rgVoice">
+		<RadioButton
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:checked="true"
+			android:text="Voice 01"
+			android:id="@+id/rbV1" />
+		<RadioButton
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Voice 02"
+			android:id="@+id/rbV2" />
+		<RadioButton
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Voice off"
+			android:id="@+id/rbVOff" />
+	</RadioGroup>
 </LinearLayout>

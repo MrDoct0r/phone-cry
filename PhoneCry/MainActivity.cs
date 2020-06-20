@@ -23,6 +23,9 @@ namespace PhoneCry
         private int lastWell = 0;
         private int lastEventTime = 0;
 
+        private RadioGroup rgVoice;
+        private RadioButton rbChecked;
+
         private double inclinaisonX,
                        inclinaisonY,
                        inclinaisonZ;
@@ -30,35 +33,49 @@ namespace PhoneCry
 
         private bool isStarted = false;
 
-        public enum voiceShort
+        public static readonly int[] voiceShort = new int[10]
         {
-            Start = Resource.Raw.Voice01_01,
-            Roll1 = Resource.Raw.Voice01_02,
-            LongRoll = Resource.Raw.Voice01_03,
-            Roll2 = Resource.Raw.Voice01_04,
-            Clash1 = Resource.Raw.Voice01_05,
-            Clash2 = Resource.Raw.Voice01_06,
-            Clash3 = Resource.Raw.Voice01_07,
-            Well1 = Resource.Raw.Voice01_08,
-            Well2 = Resource.Raw.Voice01_09,
-            End = Resource.Raw.Voice01_10
+            Resource.Raw.Voice01_01,
+            Resource.Raw.Voice01_02,
+            Resource.Raw.Voice01_03,
+            Resource.Raw.Voice01_04,
+            Resource.Raw.Voice01_05,
+            Resource.Raw.Voice01_06,
+            Resource.Raw.Voice01_07,
+            Resource.Raw.Voice01_08,
+            Resource.Raw.Voice01_09,
+            Resource.Raw.Voice01_10
         };
 
-        public enum voiceLong
+        public static readonly int[] voiceLong = new int[10]
         {
-            Start = Resource.Raw.Voice02_01,
-            Roll1 = Resource.Raw.Voice02_02,
-            LongRoll = Resource.Raw.Voice02_03,
-            Roll2 = Resource.Raw.Voice02_04,
-            Clash1 = Resource.Raw.Voice02_05,
-            Clash2 = Resource.Raw.Voice02_06,
-            Clash3 = Resource.Raw.Voice02_07,
-            Well1 = Resource.Raw.Voice02_08,
-            Well2 = Resource.Raw.Voice02_09,
-            End = Resource.Raw.Voice02_10
+            Resource.Raw.Voice02_01,
+            Resource.Raw.Voice02_02,
+            Resource.Raw.Voice02_03,
+            Resource.Raw.Voice02_04,
+            Resource.Raw.Voice02_05,
+            Resource.Raw.Voice02_06,
+            Resource.Raw.Voice02_07,
+            Resource.Raw.Voice02_08,
+            Resource.Raw.Voice02_09,
+            Resource.Raw.Voice02_10
         };
 
-        public readonly object voiceOff = null;
+        public static readonly int[] voiceOff = new int[10]
+        {
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        };
+
+        private int[] selectedVoice = voiceShort;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -69,9 +86,29 @@ namespace PhoneCry
 
             // ---- UI ----
             tvValue = FindViewById<TextView>(Resource.Id.tvValue);
+            rgVoice = FindViewById<RadioGroup>(Resource.Id.rgVoice);
+
+            rgVoice.CheckedChange += RgVoice_CheckedChange;
 
             accelerometerReader.ToggleAccelerometer();
             play();
+        }
+
+        private void RgVoice_CheckedChange(object sender, RadioGroup.CheckedChangeEventArgs e)
+        {
+            rbChecked = FindViewById<RadioButton>(rgVoice.CheckedRadioButtonId);
+            switch (rbChecked.Text)
+            {
+                case "Voice 01":
+                    selectedVoice = voiceShort;
+                    break;
+                case "Voice 02":
+                    selectedVoice = voiceLong;
+                    break;
+                case "Voice off":
+                    selectedVoice = voiceOff;
+                    break;
+            }
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -122,7 +159,6 @@ namespace PhoneCry
             // pour être sûr de laisser le temps de remettre le téléphone à plat
             else if (globalTimer >= 4000)
             {
-                System.Console.WriteLine(inclinaisonY);
                 checkRoll();
                 // checkClash();
                 checkWell();
@@ -138,13 +174,13 @@ namespace PhoneCry
             if (inclinaisonZ > 5)
             {
                 isStarted = true;
-                playSound(Resource.Raw.Voice01_01);
+                playSound(selectedVoice[0]);
             }
         }
 
         private void playSound(int sound)
         {
-            if (!mp.IsPlaying)
+            if (!mp.IsPlaying && sound != 0)
             {
                 mp = MediaPlayer.Create(this, sound);
                 mp.Start();
@@ -160,15 +196,16 @@ namespace PhoneCry
                 if (rollingTime < 3000 && firstRoll)
                 {
                     playSound(Resource.Raw.Voice01_02);
+                    playSound(selectedVoice[1]);
                     firstRoll = false;
                 }
                 else if (rollingTime < 3000)
                 {
-                    playSound(Resource.Raw.Voice01_04);
+                    playSound(selectedVoice[3]);
                 }
                 else
                 {
-                    playSound(Resource.Raw.Voice01_03);
+                    playSound(selectedVoice[2]);
                 }
             }
             else
@@ -181,17 +218,17 @@ namespace PhoneCry
         {
             if (nbClashes == 0)
             {
-                playSound(Resource.Raw.Voice01_05);
+                playSound(selectedVoice[4]);
                 nbClashes++;
             }
             else if (nbClashes == 1)
             {
-                playSound(Resource.Raw.Voice01_06);
+                playSound(selectedVoice[5]);
                 nbClashes++;
             }
             else
             {
-                playSound(Resource.Raw.Voice01_07);
+                playSound(selectedVoice[6]);
                 nbClashes++;
             }
         }
@@ -203,14 +240,14 @@ namespace PhoneCry
                 int delayWithoutProblem = globalTimer - lastEventTime;
                 if (delayWithoutProblem >= 5000 && playFirstWell)
                 {
-                    playSound(Resource.Raw.Voice01_08);
+                    playSound(selectedVoice[7]);
                     playFirstWell = !playFirstWell;
                     lastEventTime = globalTimer;
                     lastWell = globalTimer;
                 }
                 else if (delayWithoutProblem >= 10000 && !playFirstWell)
                 {
-                    playSound(Resource.Raw.Voice01_09);
+                    playSound(selectedVoice[8]);
                     playFirstWell = !playFirstWell;
                     lastEventTime = globalTimer;
                     lastWell = globalTimer;

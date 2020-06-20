@@ -1484,32 +1484,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\MrDoctor\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "/Users/mrdoctor/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\development\\phone-cry\\PhoneCry\\PhoneCry\\PhoneCry.csproj",
+      "projectUniqueName": "/Users/mrdoctor/development/phone-cry/PhoneCry/PhoneCry.csproj",
       "projectName": "PhoneCry",
-      "projectPath": "E:\\development\\phone-cry\\PhoneCry\\PhoneCry\\PhoneCry.csproj",
-      "packagesPath": "C:\\Users\\MrDoctor\\.nuget\\packages\\",
-      "outputPath": "E:\\development\\phone-cry\\PhoneCry\\PhoneCry\\obj\\",
+      "projectPath": "/Users/mrdoctor/development/phone-cry/PhoneCry/PhoneCry.csproj",
+      "packagesPath": "/Users/mrdoctor/.nuget/packages/",
+      "outputPath": "/Users/mrdoctor/development/phone-cry/PhoneCry/obj/",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\MrDoctor\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "/Users/mrdoctor/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "monoandroid90"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
